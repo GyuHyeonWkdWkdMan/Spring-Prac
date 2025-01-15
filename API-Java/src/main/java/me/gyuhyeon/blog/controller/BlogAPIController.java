@@ -48,12 +48,22 @@ public class BlogAPIController {
         .body(new ArticleResponse(article));
     }
 
-    @DeleteMapping("api/articles/{id}")
+    @DeleteMapping("/api/articles/{id}")
     // URL 경로에서 값 추출
     public ResponseEntity<Void> deleteArticle(@PathVariable long id) {  // URL의 id값의 해당하는 값을 파라미터로 받음
         blogService.delete(id);
 
         return ResponseEntity.ok()
                 .build();
+    }
+
+    @PutMapping("/api/articles/{id}")
+    // URL 경로에서 값 추출
+    public ResponseEntity<ArticleResponse> updateArticle(@PathVariable long id,
+                                                         @RequestBody UpdateArticleRequest request) {
+        Article UpdatedArticle = blogService.update(id, request);
+
+        return ResponseEntity.ok()
+                .body(new ArticleResponse(UpdatedArticle));
     }
 }

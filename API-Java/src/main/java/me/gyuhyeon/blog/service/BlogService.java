@@ -1,10 +1,12 @@
 package me.gyuhyeon.blog.service;
 
+
 import lombok.*;
 import me.gyuhyeon.blog.domain.Article;
 import me.gyuhyeon.blog.dto.req.*;
 import me.gyuhyeon.blog.repository.BlogRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,5 +32,15 @@ public class BlogService {
 
     public void delete(long id) {
         blogRepository.deleteById(id);
+    }
+
+    @Transactional  // 트랜잭션 메서드
+    public Article update (long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById((id))
+                .orElseThrow(() -> new IllegalArgumentException("not found: "+ id));
+
+        article.update(request.getTitle(), request.getContent());
+
+        return article;
     }
 }
