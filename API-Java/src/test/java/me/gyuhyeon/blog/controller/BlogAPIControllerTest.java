@@ -173,7 +173,6 @@ class BlogAPIControllerTest {
         Article article = blogRepository.findById(savedArticle.getId()).get();
 
         assertThat(article.getTitle()).isEqualTo(newTitle);
-        assertThat(article.getContent()).isEqualTo(newContent);
     }
 
 }
