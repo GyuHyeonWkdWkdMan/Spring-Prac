@@ -1,0 +1,30 @@
+volumes:
+  db-volume-1:
+
+networks:
+  api-network-1:
+
+services:
+  spring-db:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - 3310:3306
+    environment:
+      MYSQL_DATABASE: api_db
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_USER: api_user
+      MYSQL_PASSWORD: 1234
+      TZ: Asia/Seoul
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password 
+      - --skip-character-set-client-handshake
+    volumes:
+      - db-volume-1:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - api-network-1
