@@ -16,6 +16,10 @@ spring:
     console:
       enabled: true
 
+jwt:
+  issuer: rbguswkd12@gmail.com
+  secret_key: study-springboot
+
 #spring:
 #  jpa:
 #    open-in-view: true
