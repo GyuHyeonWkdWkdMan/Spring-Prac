@@ -1,3 +1,4 @@
+.env
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -37,9 +38,6 @@ bin/
 
 ### VS Code ###
 .vscode/
-
-### Dependency and Secret ###
-src/main/resources/application.yml
 
 ### Mac OS ###
 .DS_Store
