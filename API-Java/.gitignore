@@ -39,7 +39,7 @@ bin/
 .vscode/
 
 ### Dependency and Secret ###
-**/src/main/resources/application.yml
+src/main/resources/application.yml
 
 ### Mac OS ###
 .DS_Store
