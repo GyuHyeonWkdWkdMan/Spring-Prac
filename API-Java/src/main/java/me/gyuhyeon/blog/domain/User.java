@@ -28,10 +28,15 @@ public class User implements UserDetails {      // UserDetails를 상속받아 �
     @Column(name = "password")
     private String password;
 
+    // 사용자 이름
+    @Column(name = "nickname", unique = true)
+    private String nickname;
+
     @Builder
-    public User(String email, String password, String auth) {
+    public User(String email, String password, String nickname) {
         this.email = email;
         this.password = password;
+        this.nickname = nickname;
     }
 
     @Override   // 권한 반환
@@ -48,15 +53,22 @@ public class User implements UserDetails {      // UserDetails를 상속받아 �
     public String getPassword() {
         return password;
     }
+    // 사용자 이름 변경
+    public User update(String nickname) {
+        this.nickname = nickname;
+
+        return this;
+    }
+
     @Override   // 계정 만료 여부 반환
     public boolean isAccountNonExpired() {
-        // 완려되었는지 확인하는 로직
+        // 완료되었는지 확인하는 로직
         return true;    // true -> 만료되지 않았음.
     }
 
     @Override   // 계정 잠금 여부 반환
     public boolean isAccountNonLocked() {
-        // 계정 잠금되어쓴ㄴ지 확인하는 로직
+        // 계정 잠금되었는지 확인하는 로직
         return true;    // true -> 잠금되지 않았음.
     }
 
